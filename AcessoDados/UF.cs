@@ -9,7 +9,7 @@ namespace AcessoDados
 {
     public class UF : AcessoBD
     {
-        public DTO.UFDTO RetornarUF(int idf_uf)
+        public DTO.UFDTO Dados(int idf_uf)
         {
             DTO.UFDTO aux = new DTO.UFDTO();
 

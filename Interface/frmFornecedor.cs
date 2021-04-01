@@ -29,7 +29,7 @@ namespace Interface
             GridView.Columns[3].HeaderText = "Telefone";
             GridView.Columns[4].HeaderText = "Cadastro";
 
-            cbEmpresa.DataSource = empresa.RetornarListaEmpresas();
+            cbEmpresa.DataSource = empresa.CarregarRegistros();
         }
 
         protected override int RetornarGridID()
@@ -44,14 +44,29 @@ namespace Interface
             return GridView.RowCount;
         }
 
+        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, System.Type tipoCampo)
+        {
+            fornecedor = new RegraNegocio.RegraFornecedor();
+
+            if (Type.GetTypeCode(tipoCampo.GetType()) == TypeCode.DateTime)
+            {
+                GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} = '{1}'", nomeCampo, valorCampo));
+            }
+            else
+            {
+                GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
+            }            
+            return GridView.RowCount;
+        }
+
         protected override void CarregarRegistro()
         {
-            DTO = new RegraNegocio.RegraFornecedor().DadosFornecedor(idAtual);
+            DTO = new RegraNegocio.RegraFornecedor().Dados(idAtual);
 
             txbNome.Text = DTO.Nome;
             txbCNPJ.Text = DTO.CPFCNPJ;
             txbTelefone.Text = DTO.Telefone;
-            cbEmpresa.Text = empresa.RetornarEmpresa(DTO.IDF_EMPRESA).Nome;
+            cbEmpresa.Text = empresa.Dados(DTO.IDF_EMPRESA).Nome;
         }
 
         protected override void SalvarRegistro()

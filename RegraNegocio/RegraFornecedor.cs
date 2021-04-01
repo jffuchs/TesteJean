@@ -18,7 +18,7 @@ namespace RegraNegocio
 
             if (dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoa.Fisica)
             {
-                if (UF.RetornarUF(empresa.RetornarEmpresa(dados.IDF_EMPRESA).IDF_UF).Sigla == "PR")
+                if (UF.Dados(empresa.Dados(dados.IDF_EMPRESA).IDF_UF).Sigla == "PR")
                 {
                     if (Util.CalcularIdade(dados.DataHoraCadastro) < 18)
                     {
@@ -49,15 +49,18 @@ namespace RegraNegocio
             }
         }
 
-        public DataTable CarregarRegistros()
+        public DataTable CarregarRegistros(string filtros = "")
         {
             StringBuilder str = new StringBuilder();
             str.AppendLine("SELECT ID_FORNECEDOR, FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, FOR_DTHRCAD FROM FORNECEDOR");
-            //str.AppendLine("LEFT JOIN UF ON ID_UF = IDF_UF");
+            if (filtros.Trim() != "")
+            {
+                str.AppendLine("WHERE "+filtros);
+            }
             return acessoFornecedor.RetornarDataTable(str.ToString());
         }
 
-        public AcessoDados.DTO.FornecedorDTO DadosFornecedor(int idFornecedor)
+        public AcessoDados.DTO.FornecedorDTO Dados(int idFornecedor)
         {
             return acessoFornecedor.Dados(idFornecedor);
         }

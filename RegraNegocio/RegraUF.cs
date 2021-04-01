@@ -11,14 +11,14 @@ namespace RegraNegocio
     {
         AcessoDados.UF acessoUF = new AcessoDados.UF();
 
-        public DataTable RetornarListaUF()
+        public DataTable CarregarRegistros()
         {
             return acessoUF.RetornarDataTable("SELECT * FROM UF ORDER BY UF_NOME");
         }
 
-        public AcessoDados.DTO.UFDTO RetornarUF(int idf_uf)
+        public AcessoDados.DTO.UFDTO Dados(int idf_uf)
         {
-            return acessoUF.RetornarUF(idf_uf);
+            return acessoUF.Dados(idf_uf);
         }
     }
 }

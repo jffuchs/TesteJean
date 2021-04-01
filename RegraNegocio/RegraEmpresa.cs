@@ -32,25 +32,20 @@ namespace RegraNegocio
             }
         }
 
-        public DataTable CarregarRegistros()
+        public DataTable CarregarRegistros(string filtros = "")
         {
             StringBuilder str = new StringBuilder();
-            str.AppendLine("SELECT ID_EMPRESA, UF_SIGLA , EMP_CNPJ, EMP_NOME FROM EMPRESA");
+            str.AppendLine("SELECT ID_EMPRESA, UF_SIGLA, EMP_CNPJ, EMP_NOME FROM EMPRESA");
             str.AppendLine("LEFT JOIN UF ON ID_UF = IDF_UF");
+            if (filtros.Trim() != "")
+            {
+                str.AppendLine("WHERE " + filtros);
+            }
+            str.AppendLine("ORDER BY EMP_NOME");
             return acessoEmpresa.RetornarDataTable(str.ToString());
         }
-
-        public object RetornarListaEmpresas()
-        {
-            return acessoEmpresa.RetornarDataTable("SELECT * FROM EMPRESA ORDER BY EMP_NOME");
-        }
-
-        public AcessoDados.DTO.EmpresaDTO DadosEmpresa(int idEmpresa)
-        {
-            return acessoEmpresa.Dados(idEmpresa);
-        }
-
-        public AcessoDados.DTO.EmpresaDTO RetornarEmpresa(int iDF_EMPRESA)
+        
+        public AcessoDados.DTO.EmpresaDTO Dados(int iDF_EMPRESA)
         {
             return acessoEmpresa.Dados(iDF_EMPRESA);
         }

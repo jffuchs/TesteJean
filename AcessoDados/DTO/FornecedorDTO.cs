@@ -17,19 +17,20 @@ namespace AcessoDados.DTO
         public string NomeTabela = "FORNECEDOR";
         public string NomeCampoID = "ID_FORNECEDOR";
 
-        private TipoPessoa tipoPessoa;
         private string cnpj;
 
         public int ID { get; set; }
         public int IDF_EMPRESA { get; set; }
         public string Nome { get; set; }
+        public DateTime DataHoraCadastro { get; set; }
+        public string Telefone { get; set; }
+        
         public string CPFCNPJ 
         {
             get { return cnpj; }
             set { cnpj = value; }
         }
-        public DateTime DataHoraCadastro { get; set; }
-        public string Telefone { get; set; }
+        
         public TipoPessoa Pessoa 
         { 
             get 

@@ -7,6 +7,8 @@ namespace Interface
     {
         protected int idAtual = 0;
         private int totalRegistros = 0;
+        private string nomeColunaSelecionada;
+        private System.Type tipoColunaSelecionada;
 
         public frmBase()
         {
@@ -55,6 +57,18 @@ namespace Interface
             PosicionarPrimeiroControle();
         }
 
+        private void PosicionarPrimeiroControle()
+        {
+            foreach (Control ctr in pnEdicao.Controls)
+            {
+                if (ctr.TabIndex == 0)
+                {
+                    ctr.Focus();
+                    break;
+                }
+            }
+        }
+
         private void frmBase_KeyDown(object sender, KeyEventArgs e)
         {
             //Quer dizer que está na aba "Lista"...
@@ -64,7 +78,7 @@ namespace Interface
                 {
                     btnIncluir_Click(sender, e);
                 }
-                else if (e.KeyCode == Keys.Delete)
+                else if (e.KeyCode == Keys.Delete && !txbPesquisa.Focused)
                 {
                     btnExcluir_Click(sender, e);
                 }
@@ -110,6 +124,11 @@ namespace Interface
 
         protected virtual void ExcluirRegistro()
         {        
+        }
+
+        protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, System.Type tipoCampo)
+        {
+            return 0;
         }
 
         private void FrmBase_Load(object sender, EventArgs e)
@@ -209,16 +228,20 @@ namespace Interface
             }
         }
 
-        private void PosicionarPrimeiroControle()
+        private void GridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            foreach (Control ctr in pnEdicao.Controls) 
-            {
-                if (ctr.TabIndex == 0)
-                {
-                    ctr.Focus();
-                    break;
-                }
-            }
+            lbPesquisa.Text = "Pesquisar "+GridView.Columns[e.ColumnIndex].HeaderText;
+
+            nomeColunaSelecionada = GridView.Columns[e.ColumnIndex].Name.ToString();
+            tipoColunaSelecionada = GridView.Columns[e.ColumnIndex].ValueType;
+
+            txbPesquisa.Clear();
+            txbPesquisa.Focus();
+        }
+
+        private void txbPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            CarregarRegistrosFiltrados(nomeColunaSelecionada, txbPesquisa.Text, tipoColunaSelecionada);
         }
     }
 }

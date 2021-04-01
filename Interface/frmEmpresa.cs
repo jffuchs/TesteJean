@@ -28,7 +28,7 @@ namespace Interface
             GridView.Columns[2].HeaderText = "CNPJ";
             GridView.Columns[3].HeaderText = "Razão Social";            
 
-            cbUF.DataSource = UF.RetornarListaUF();
+            cbUF.DataSource = UF.CarregarRegistros();
         }
 
         protected override int RetornarGridID()
@@ -43,13 +43,20 @@ namespace Interface
             return GridView.RowCount;
         }
 
+        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, System.Type tipoCampo)
+        {
+            empresa = new RegraNegocio.RegraEmpresa();
+            GridView.DataSource = empresa.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
+            return GridView.RowCount;
+        }
+
         protected override void CarregarRegistro()
         {
-            DTO = new RegraNegocio.RegraEmpresa().DadosEmpresa(idAtual);
+            DTO = new RegraNegocio.RegraEmpresa().Dados(idAtual);
 
             txbNome.Text = DTO.Nome;            
             txbCNPJ.Text = DTO.CNPJ;
-            cbUF.Text = UF.RetornarUF(DTO.IDF_UF).Nome;
+            cbUF.Text = UF.Dados(DTO.IDF_UF).Nome;
         }
 
         protected override void SalvarRegistro()
