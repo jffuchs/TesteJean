@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegraNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,18 +45,25 @@ namespace Interface
             return GridView.RowCount;
         }
 
-        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, System.Type tipoCampo)
+        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, object tipoCampo)
         {
             fornecedor = new RegraNegocio.RegraFornecedor();
 
-            if (Type.GetTypeCode(tipoCampo.GetType()) == TypeCode.DateTime)
+            try
             {
-                GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} = '{1}'", nomeCampo, valorCampo));
+                if (Util.ValidarData(valorCampo))
+                {
+                    GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} = '{1}'", nomeCampo, valorCampo));
+                }
+                else
+                {
+                    GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
+                }
             }
-            else
+            catch (Exception)
             {
-                GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
-            }            
+                GridView.DataSource = fornecedor.CarregarRegistros();
+            }
             return GridView.RowCount;
         }
 

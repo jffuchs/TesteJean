@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace RegraNegocio
@@ -17,6 +18,12 @@ namespace RegraNegocio
                 idade--;
             }
             return idade;
+        }
+
+        public static bool ValidarData(string data)
+        {
+            Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
+            return r.Match(data).Success;
         }
     }
 }

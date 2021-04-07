@@ -126,7 +126,7 @@ namespace Interface
         {        
         }
 
-        protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, System.Type tipoCampo)
+        protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, object tipoCampo)
         {
             return 0;
         }
@@ -230,7 +230,7 @@ namespace Interface
 
         private void GridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            lbPesquisa.Text = "Pesquisar "+GridView.Columns[e.ColumnIndex].HeaderText;
+            lbPesquisa.Text = "Filtrar "+GridView.Columns[e.ColumnIndex].HeaderText;
 
             nomeColunaSelecionada = GridView.Columns[e.ColumnIndex].Name.ToString();
             tipoColunaSelecionada = GridView.Columns[e.ColumnIndex].ValueType;

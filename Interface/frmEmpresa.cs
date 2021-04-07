@@ -43,7 +43,7 @@ namespace Interface
             return GridView.RowCount;
         }
 
-        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, System.Type tipoCampo)
+        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, object tipoCampo)
         {
             empresa = new RegraNegocio.RegraEmpresa();
             GridView.DataSource = empresa.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));

@@ -36,6 +36,10 @@ namespace Interface
             this.tcAbas = new System.Windows.Forms.TabControl();
             this.tpLista = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.GridView = new Interface.DataGridViewJFF();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.txbPesquisa = new System.Windows.Forms.TextBox();
+            this.lbPesquisa = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnFechar = new System.Windows.Forms.Button();
             this.btnExcluir = new System.Windows.Forms.Button();
@@ -48,18 +52,14 @@ namespace Interface
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Tempo = new System.Windows.Forms.Timer(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.GridView = new Interface.DataGridViewJFF();
-            this.lbPesquisa = new System.Windows.Forms.Label();
-            this.txbPesquisa = new System.Windows.Forms.TextBox();
             this.tcAbas.SuspendLayout();
             this.tpLista.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tpEdicao.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAbas
@@ -95,6 +95,73 @@ namespace Interface
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(615, 305);
             this.panel1.TabIndex = 3;
+            // 
+            // GridView
+            // 
+            this.GridView.AllowUserToAddRows = false;
+            this.GridView.AllowUserToDeleteRows = false;
+            this.GridView.AllowUserToOrderColumns = true;
+            this.GridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(229)))), ((int)(((byte)(241)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.GridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(204)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle5;
+            this.GridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GridView.EnableHeadersVisualStyles = false;
+            this.GridView.Location = new System.Drawing.Point(0, 46);
+            this.GridView.MultiSelect = false;
+            this.GridView.Name = "GridView";
+            this.GridView.ReadOnly = true;
+            this.GridView.RowHeadersVisible = false;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.GridView.ShowEditingIcon = false;
+            this.GridView.Size = new System.Drawing.Size(613, 257);
+            this.GridView.TabIndex = 2;
+            this.GridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_CellMouseClick);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightGray;
+            this.panel4.Controls.Add(this.txbPesquisa);
+            this.panel4.Controls.Add(this.lbPesquisa);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(613, 46);
+            this.panel4.TabIndex = 1;
+            // 
+            // txbPesquisa
+            // 
+            this.txbPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbPesquisa.Location = new System.Drawing.Point(7, 20);
+            this.txbPesquisa.Name = "txbPesquisa";
+            this.txbPesquisa.Size = new System.Drawing.Size(599, 20);
+            this.txbPesquisa.TabIndex = 1;
+            this.txbPesquisa.TextChanged += new System.EventHandler(this.txbPesquisa_TextChanged);
+            // 
+            // lbPesquisa
+            // 
+            this.lbPesquisa.AutoSize = true;
+            this.lbPesquisa.Location = new System.Drawing.Point(4, 4);
+            this.lbPesquisa.Name = "lbPesquisa";
+            this.lbPesquisa.Size = new System.Drawing.Size(46, 13);
+            this.lbPesquisa.TabIndex = 0;
+            this.lbPesquisa.Text = "Filtrar ID";
             // 
             // panel2
             // 
@@ -158,7 +225,7 @@ namespace Interface
             this.tpEdicao.Location = new System.Drawing.Point(4, 22);
             this.tpEdicao.Name = "tpEdicao";
             this.tpEdicao.Padding = new System.Windows.Forms.Padding(3);
-            this.tpEdicao.Size = new System.Drawing.Size(704, 420);
+            this.tpEdicao.Size = new System.Drawing.Size(704, 311);
             this.tpEdicao.TabIndex = 1;
             this.tpEdicao.Text = "Edição";
             this.tpEdicao.UseVisualStyleBackColor = true;
@@ -170,7 +237,7 @@ namespace Interface
             this.pnEdicao.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnEdicao.Location = new System.Drawing.Point(3, 3);
             this.pnEdicao.Name = "pnEdicao";
-            this.pnEdicao.Size = new System.Drawing.Size(698, 380);
+            this.pnEdicao.Size = new System.Drawing.Size(698, 271);
             this.pnEdicao.TabIndex = 1;
             // 
             // panel3
@@ -181,7 +248,7 @@ namespace Interface
             this.panel3.Controls.Add(this.btnLimpar);
             this.panel3.Controls.Add(this.btnCancelar);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(3, 383);
+            this.panel3.Location = new System.Drawing.Point(3, 274);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(698, 34);
             this.panel3.TabIndex = 0;
@@ -218,73 +285,6 @@ namespace Interface
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.LightGray;
-            this.panel4.Controls.Add(this.txbPesquisa);
-            this.panel4.Controls.Add(this.lbPesquisa);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(613, 46);
-            this.panel4.TabIndex = 1;
-            // 
-            // GridView
-            // 
-            this.GridView.AllowUserToAddRows = false;
-            this.GridView.AllowUserToDeleteRows = false;
-            this.GridView.AllowUserToOrderColumns = true;
-            this.GridView.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(229)))), ((int)(((byte)(241)))));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.GridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.GridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.GridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(204)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle5;
-            this.GridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridView.EnableHeadersVisualStyles = false;
-            this.GridView.Location = new System.Drawing.Point(0, 46);
-            this.GridView.MultiSelect = false;
-            this.GridView.Name = "GridView";
-            this.GridView.ReadOnly = true;
-            this.GridView.RowHeadersVisible = false;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(129)))), ((int)(((byte)(189)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.GridView.ShowEditingIcon = false;
-            this.GridView.Size = new System.Drawing.Size(613, 257);
-            this.GridView.TabIndex = 2;
-            this.GridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_CellMouseClick);
-            // 
-            // lbPesquisa
-            // 
-            this.lbPesquisa.AutoSize = true;
-            this.lbPesquisa.Location = new System.Drawing.Point(4, 4);
-            this.lbPesquisa.Name = "lbPesquisa";
-            this.lbPesquisa.Size = new System.Drawing.Size(67, 13);
-            this.lbPesquisa.TabIndex = 0;
-            this.lbPesquisa.Text = "Pesquisar ID";
-            // 
-            // txbPesquisa
-            // 
-            this.txbPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbPesquisa.Location = new System.Drawing.Point(7, 20);
-            this.txbPesquisa.Name = "txbPesquisa";
-            this.txbPesquisa.Size = new System.Drawing.Size(599, 20);
-            this.txbPesquisa.TabIndex = 1;
-            this.txbPesquisa.TextChanged += new System.EventHandler(this.txbPesquisa_TextChanged);
-            // 
             // frmBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,12 +301,12 @@ namespace Interface
             this.tcAbas.ResumeLayout(false);
             this.tpLista.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tpEdicao.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.ResumeLayout(false);
 
         }
