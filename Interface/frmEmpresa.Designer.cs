@@ -39,25 +39,22 @@ namespace Interface
             this.tcAbas.SuspendLayout();
             this.tpLista.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.pnEdicao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAbas
             // 
-            this.tcAbas.Size = new System.Drawing.Size(788, 325);
+            this.tcAbas.Size = new System.Drawing.Size(569, 325);
             // 
             // tpLista
             // 
             this.tpLista.Size = new System.Drawing.Size(780, 299);
+            this.tpLista.Text = "Lista de Empresas";
             // 
             // panel1
             // 
             this.panel1.Size = new System.Drawing.Size(691, 293);
-            // 
-            // GridView
-            // 
-            this.GridView.Size = new System.Drawing.Size(689, 291);
             // 
             // pnEdicao
             // 
@@ -67,12 +64,16 @@ namespace Interface
             this.pnEdicao.Controls.Add(this.label3);
             this.pnEdicao.Controls.Add(this.txbNome);
             this.pnEdicao.Controls.Add(this.label2);
-            this.pnEdicao.Size = new System.Drawing.Size(774, 259);
+            this.pnEdicao.Size = new System.Drawing.Size(555, 259);
             // 
             // panel3
             // 
             this.panel3.Location = new System.Drawing.Point(3, 262);
-            this.panel3.Size = new System.Drawing.Size(774, 34);
+            this.panel3.Size = new System.Drawing.Size(555, 34);
+            // 
+            // GridView
+            // 
+            this.GridView.Size = new System.Drawing.Size(689, 245);
             // 
             // label1
             // 
@@ -86,7 +87,7 @@ namespace Interface
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 10);
+            this.label2.Location = new System.Drawing.Point(10, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 0;
@@ -94,7 +95,7 @@ namespace Interface
             // 
             // txbNome
             // 
-            this.txbNome.Location = new System.Drawing.Point(44, 7);
+            this.txbNome.Location = new System.Drawing.Point(50, 10);
             this.txbNome.MaxLength = 80;
             this.txbNome.Name = "txbNome";
             this.txbNome.Size = new System.Drawing.Size(494, 20);
@@ -102,7 +103,7 @@ namespace Interface
             // 
             // txbCNPJ
             // 
-            this.txbCNPJ.Location = new System.Drawing.Point(44, 33);
+            this.txbCNPJ.Location = new System.Drawing.Point(50, 36);
             this.txbCNPJ.MaxLength = 14;
             this.txbCNPJ.Name = "txbCNPJ";
             this.txbCNPJ.Size = new System.Drawing.Size(138, 20);
@@ -111,7 +112,7 @@ namespace Interface
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 36);
+            this.label3.Location = new System.Drawing.Point(10, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 2;
@@ -122,7 +123,7 @@ namespace Interface
             this.cbUF.DisplayMember = "UF_NOME";
             this.cbUF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUF.FormattingEnabled = true;
-            this.cbUF.Location = new System.Drawing.Point(44, 59);
+            this.cbUF.Location = new System.Drawing.Point(50, 62);
             this.cbUF.Name = "cbUF";
             this.cbUF.Size = new System.Drawing.Size(174, 21);
             this.cbUF.TabIndex = 3;
@@ -131,7 +132,7 @@ namespace Interface
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 62);
+            this.label5.Location = new System.Drawing.Point(10, 65);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 2;
@@ -140,15 +141,15 @@ namespace Interface
             // frmEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(788, 325);
+            this.ClientSize = new System.Drawing.Size(569, 325);
             this.Name = "frmEmpresa";
-            this.Text = "Empresa";
+            this.Text = "Empresas";
             this.tcAbas.ResumeLayout(false);
             this.tpLista.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.pnEdicao.ResumeLayout(false);
             this.pnEdicao.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.ResumeLayout(false);
 
         }

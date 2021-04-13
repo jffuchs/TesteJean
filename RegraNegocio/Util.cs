@@ -25,5 +25,17 @@ namespace RegraNegocio
             Regex r = new Regex(@"(\d{2}\/\d{2}\/\d{4})");
             return r.Match(data).Success;
         }
+
+        public static string FormatarCPFCNPJ(string CPFCNPJ)
+        {
+            if (CPFCNPJ.Length == 11)
+            {
+                return Convert.ToUInt64(CPFCNPJ).ToString(@"000\.000\.000\-00");
+            }
+            else
+            {
+                return Convert.ToUInt64(CPFCNPJ).ToString(@"00\.000\.000\/0000\-00");
+            }
+        }
     }
 }

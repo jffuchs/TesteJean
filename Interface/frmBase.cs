@@ -8,7 +8,7 @@ namespace Interface
         protected int idAtual = 0;
         private int totalRegistros = 0;
         private string nomeColunaSelecionada;
-        private System.Type tipoColunaSelecionada;
+        private string tipoColunaSelecionada;
 
         public frmBase()
         {
@@ -26,7 +26,9 @@ namespace Interface
 
                     btnLimpar.Text = this.idAtual == 0 ? "Limpar" : "Restaurar";
 
-                    LimparControles();
+                    tpEdicao.Text = idAtual == 0 ? "Incluíndo" : "Alterando";
+
+                    LimparControles(pnEdicao);
                 }
                 else
                 {
@@ -43,9 +45,9 @@ namespace Interface
             btnExcluir.Enabled = btnAlterar.Enabled;
         }
 
-        private void LimparControles()
+        private void LimparControles(Control controle)
         {
-            foreach (Control ctl in pnEdicao.Controls)
+            foreach (Control ctl in controle.Controls)
             {
                 if (ctl is TextBox)
                     (ctl as TextBox).Text = "";
@@ -53,18 +55,27 @@ namespace Interface
                     (ctl as ComboBox).SelectedIndex = -1;
                 if (ctl is ListBox)
                     (ctl as ListBox).SelectedIndex = -1;
+                if (ctl is Panel)
+                    LimparControles(ctl);
             }
-            PosicionarPrimeiroControle();
+            PosicionarPrimeiroControle(pnEdicao);
         }
 
-        private void PosicionarPrimeiroControle()
+        private void PosicionarPrimeiroControle(Control controle)
         {
-            foreach (Control ctr in pnEdicao.Controls)
+            foreach (Control ctr in controle.Controls)
             {
                 if (ctr.TabIndex == 0)
                 {
-                    ctr.Focus();
-                    break;
+                    if (ctr is Panel)
+                    {
+                        PosicionarPrimeiroControle(ctr);
+                    }
+                    else
+                    {
+                        ctr.Focus();
+                        break;
+                    }                    
                 }
             }
         }
@@ -126,7 +137,7 @@ namespace Interface
         {        
         }
 
-        protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, object tipoCampo)
+        protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, string tipoCampo)
         {
             return 0;
         }
@@ -204,12 +215,12 @@ namespace Interface
             {
                 if (this.idAtual == 0)
                 {
-                    LimparControles();
+                    LimparControles(pnEdicao);
                 }
                 else
                 {
                     CarregarRegistro();
-                    PosicionarPrimeiroControle();
+                    PosicionarPrimeiroControle(pnEdicao);
                 }
             }
         }
@@ -230,18 +241,31 @@ namespace Interface
 
         private void GridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            lbPesquisa.Text = "Filtrar "+GridView.Columns[e.ColumnIndex].HeaderText;
-
-            nomeColunaSelecionada = GridView.Columns[e.ColumnIndex].Name.ToString();
-            tipoColunaSelecionada = GridView.Columns[e.ColumnIndex].ValueType;
-
-            txbPesquisa.Clear();
-            txbPesquisa.Focus();
+            
         }
 
         private void txbPesquisa_TextChanged(object sender, EventArgs e)
         {
             CarregarRegistrosFiltrados(nomeColunaSelecionada, txbPesquisa.Text, tipoColunaSelecionada);
+        }
+
+        private void GridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            lbPesquisa.Text = "Filtrar " + GridView.Columns[e.ColumnIndex].HeaderText;
+
+            nomeColunaSelecionada = GridView.Columns[e.ColumnIndex].Name.ToString();
+            tipoColunaSelecionada = GridView.Columns[e.ColumnIndex].ValueType.Name;
+
+            txbPesquisa.Clear();
+            txbPesquisa.Focus();
+        }
+
+        private void GridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (btnAlterar.Enabled)
+            {
+                btnAlterar_Click(sender, e);
+            }
         }
     }
 }

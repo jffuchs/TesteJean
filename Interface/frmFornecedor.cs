@@ -45,16 +45,22 @@ namespace Interface
             return GridView.RowCount;
         }
 
-        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, object tipoCampo)
+        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, string tipoCampo)
         {
             fornecedor = new RegraNegocio.RegraFornecedor();
-
             try
             {
-                if (Util.ValidarData(valorCampo))
+                if (tipoCampo == "DateTime")
                 {
-                    GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} = '{1}'", nomeCampo, valorCampo));
-                }
+                    if (Util.ValidarData(valorCampo))
+                    {
+                        GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} = '{1}'", nomeCampo, valorCampo));
+                    }
+                    else
+                    {
+                        GridView.DataSource = fornecedor.CarregarRegistros();
+                    }
+                }                
                 else
                 {
                     GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
@@ -92,6 +98,26 @@ namespace Interface
         protected override void ExcluirRegistro()
         {
             fornecedor.Excluir(idAtual);
+        }
+
+        private void cbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbEmpresa.SelectedValue == null)
+            {
+                return;
+            }
+
+            int idEmpresa = Convert.ToInt32(cbEmpresa.SelectedValue.ToString());
+            if (idEmpresa >= 0)
+            {
+                AcessoDados.DTO.EmpresaDTO EmpDTO = new AcessoDados.DTO.EmpresaDTO();
+                EmpDTO = new RegraNegocio.RegraEmpresa().Dados(idEmpresa);
+                txbEmpCNPJ.Text = Util.FormatarCPFCNPJ(EmpDTO.CNPJ);
+
+                AcessoDados.DTO.UFDTO ufDTO = new AcessoDados.DTO.UFDTO();
+                ufDTO = new RegraNegocio.RegraUF().Dados(EmpDTO.IDF_UF);
+                txbEmpUF.Text = ufDTO.Sigla;
+            }
         }
     }
 }
