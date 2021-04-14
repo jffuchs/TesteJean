@@ -8,7 +8,7 @@ namespace Interface
         protected int idAtual = 0;
         private int totalRegistros = 0;
         private string nomeColunaSelecionada;
-        private string tipoColunaSelecionada;
+        private string tipoColunaSelecionada;        
 
         public frmBase()
         {

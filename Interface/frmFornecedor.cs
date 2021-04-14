@@ -30,6 +30,8 @@ namespace Interface
             GridView.Columns[3].HeaderText = "Telefone";
             GridView.Columns[4].HeaderText = "Cadastro";
 
+            GridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             cbEmpresa.DataSource = empresa.CarregarRegistros();
         }
 
@@ -73,6 +75,26 @@ namespace Interface
             return GridView.RowCount;
         }
 
+        private void txbCNPJ_Enter(object sender, EventArgs e)
+        {
+            txbCNPJ.Text = Util.RetornarApenasNumeros(txbCNPJ.Text);
+        }
+
+        private void txbCNPJ_Leave(object sender, EventArgs e)
+        {
+            txbCNPJ.Text = Util.FormatarCPFCNPJ(txbCNPJ.Text);
+        }
+
+        private void txbTelefone_Leave(object sender, EventArgs e)
+        {
+            txbTelefone.Text = Util.FormatarTelefone(txbTelefone.Text);
+        }
+
+        private void txbTelefone_Enter(object sender, EventArgs e)
+        {
+            txbTelefone.Text = Util.RetornarApenasNumeros(txbTelefone.Text);
+        }
+
         protected override void CarregarRegistro()
         {
             DTO = new RegraNegocio.RegraFornecedor().Dados(idAtual);
@@ -90,7 +112,7 @@ namespace Interface
             DTO.CPFCNPJ = txbCNPJ.Text;
             DTO.Telefone = txbTelefone.Text;
             DTO.IDF_EMPRESA = Convert.ToInt32(cbEmpresa.SelectedValue.ToString());
-            DTO.DataHoraCadastro = DateTime.Now;
+            DTO.DataHoraCadastro = DateTime.Now;            
 
             fornecedor.IncluirAlterar(DTO);
         }
@@ -118,6 +140,6 @@ namespace Interface
                 ufDTO = new RegraNegocio.RegraUF().Dados(EmpDTO.IDF_UF);
                 txbEmpUF.Text = ufDTO.Sigla;
             }
-        }
+        }        
     }
 }

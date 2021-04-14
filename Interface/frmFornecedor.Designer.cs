@@ -53,7 +53,6 @@ namespace Interface
             // tcAbas
             // 
             this.tcAbas.Size = new System.Drawing.Size(712, 446);
-            this.tcAbas.TabIndex = 0;
             // 
             // tpLista
             // 
@@ -74,7 +73,6 @@ namespace Interface
             this.pnEdicao.Controls.Add(this.txbNome);
             this.pnEdicao.Controls.Add(this.label2);
             this.pnEdicao.Size = new System.Drawing.Size(698, 380);
-            this.pnEdicao.TabIndex = 0;
             // 
             // panel3
             // 
@@ -91,6 +89,8 @@ namespace Interface
             this.txbCNPJ.Name = "txbCNPJ";
             this.txbCNPJ.Size = new System.Drawing.Size(138, 20);
             this.txbCNPJ.TabIndex = 2;
+            this.txbCNPJ.Enter += new System.EventHandler(this.txbCNPJ_Enter);
+            this.txbCNPJ.Leave += new System.EventHandler(this.txbCNPJ_Leave);
             // 
             // label3
             // 
@@ -121,10 +121,12 @@ namespace Interface
             // txbTelefone
             // 
             this.txbTelefone.Location = new System.Drawing.Point(76, 151);
-            this.txbTelefone.MaxLength = 14;
+            this.txbTelefone.MaxLength = 11;
             this.txbTelefone.Name = "txbTelefone";
-            this.txbTelefone.Size = new System.Drawing.Size(138, 20);
+            this.txbTelefone.Size = new System.Drawing.Size(111, 20);
             this.txbTelefone.TabIndex = 3;
+            this.txbTelefone.Enter += new System.EventHandler(this.txbTelefone_Enter);
+            this.txbTelefone.Leave += new System.EventHandler(this.txbTelefone_Leave);
             // 
             // label1
             // 

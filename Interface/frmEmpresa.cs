@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegraNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,8 @@ namespace Interface
             GridView.Columns[0].HeaderText = "ID";
             GridView.Columns[1].HeaderText = "UF";
             GridView.Columns[2].HeaderText = "CNPJ";
-            GridView.Columns[3].HeaderText = "Razão Social";            
+            GridView.Columns[3].HeaderText = "Razão Social";
+            GridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             cbUF.DataSource = UF.CarregarRegistros();
         }
@@ -72,6 +74,16 @@ namespace Interface
         protected override void ExcluirRegistro()
         {
             empresa.Excluir(idAtual);
+        }
+
+        private void txbCNPJ_Enter(object sender, EventArgs e)
+        {
+            txbCNPJ.Text = Util.RetornarApenasNumeros(txbCNPJ.Text);
+        }
+
+        private void txbCNPJ_Leave(object sender, EventArgs e)
+        {
+            txbCNPJ.Text = Util.FormatarCPFCNPJ(txbCNPJ.Text);
         }
     }
 }

@@ -49,12 +49,12 @@ namespace Interface
             // 
             // tpLista
             // 
-            this.tpLista.Size = new System.Drawing.Size(780, 299);
+            this.tpLista.Size = new System.Drawing.Size(561, 299);
             this.tpLista.Text = "Lista de Empresas";
             // 
             // panel1
             // 
-            this.panel1.Size = new System.Drawing.Size(691, 293);
+            this.panel1.Size = new System.Drawing.Size(472, 293);
             // 
             // pnEdicao
             // 
@@ -73,7 +73,7 @@ namespace Interface
             // 
             // GridView
             // 
-            this.GridView.Size = new System.Drawing.Size(689, 245);
+            this.GridView.Size = new System.Drawing.Size(470, 245);
             // 
             // label1
             // 
@@ -108,6 +108,8 @@ namespace Interface
             this.txbCNPJ.Name = "txbCNPJ";
             this.txbCNPJ.Size = new System.Drawing.Size(138, 20);
             this.txbCNPJ.TabIndex = 2;
+            this.txbCNPJ.Enter += new System.EventHandler(this.txbCNPJ_Enter);
+            this.txbCNPJ.Leave += new System.EventHandler(this.txbCNPJ_Leave);
             // 
             // label3
             // 
