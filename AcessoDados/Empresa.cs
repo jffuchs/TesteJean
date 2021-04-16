@@ -22,6 +22,15 @@ namespace AcessoDados
 
             if (dados.ID <= 0)
             {
+                str.Append(DataAccess.MontarInsert(dados, typeof(DTO.EmpresaDTO)));
+            }
+            else
+            {
+                str.Append(DataAccess.MontarUpdate(dados, typeof(DTO.EmpresaDTO)));
+            }                
+
+            /*if (dados.ID <= 0)
+            {
                 str.AppendLine("INSERT INTO Empresa (EMP_NOME, EMP_CNPJ, IDF_UF)");
                 str.AppendLine("VALUES (@nome, @cnpj, @IDF_UF)");
             }
@@ -29,7 +38,7 @@ namespace AcessoDados
             {
                 str.AppendLine("UPDATE Empresa SET EMP_NOME = @nome, EMP_CNPJ = @cnpj, IDF_UF = @IDF_UF");
                 str.AppendLine("WHERE ID_EMPRESA = " + dados.ID);
-            }           
+            } */          
             cmd.CommandText = str.ToString();     
             
             cmd.Parameters.AddWithValue("@nome", dados.Nome);
