@@ -20,6 +20,8 @@ namespace Interface
             InitializeComponent();
             fornecedor = new RegraNegocio.RegraFornecedor();
             empresa = new RegraNegocio.RegraEmpresa();
+            regraNegocio = new RegraNegocio.RegraFornecedor();
+            cbEmpresa.DataSource = empresa.CarregarRegistros();
         }
 
         protected override void Inicializar()
@@ -31,49 +33,14 @@ namespace Interface
             GridView.Columns[4].HeaderText = "Cadastro";
 
             GridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            cbEmpresa.DataSource = empresa.CarregarRegistros();
         }
-
-        protected override int RetornarGridID()
-        {
-            return Convert.ToInt32(GridView.Rows[GridView.CurrentRow.Index].Cells[DTO.NomeCampoID].Value.ToString());
-        }
-
-        protected override int CarregarTodosRegistros()
+        
+        /*protected override int CarregarTodosRegistros()
         {
             fornecedor = new RegraNegocio.RegraFornecedor();
             GridView.DataSource = fornecedor.CarregarRegistros();
             return GridView.RowCount;
-        }
-
-        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, string tipoCampo)
-        {
-            fornecedor = new RegraNegocio.RegraFornecedor();
-            try
-            {
-                if (tipoCampo == "DateTime")
-                {
-                    if (Util.ValidarData(valorCampo))
-                    {
-                        GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} = '{1}'", nomeCampo, valorCampo));
-                    }
-                    else
-                    {
-                        GridView.DataSource = fornecedor.CarregarRegistros();
-                    }
-                }                
-                else
-                {
-                    GridView.DataSource = fornecedor.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
-                }
-            }
-            catch (Exception)
-            {
-                GridView.DataSource = fornecedor.CarregarRegistros();
-            }
-            return GridView.RowCount;
-        }
+        }*/
 
         private void txbCNPJ_Enter(object sender, EventArgs e)
         {
@@ -81,8 +48,10 @@ namespace Interface
         }
 
         private void txbCNPJ_Leave(object sender, EventArgs e)
-        {
+        {            
+            DTO.CPFCNPJ = Util.RetornarApenasNumeros(txbCNPJ.Text);
             txbCNPJ.Text = Util.FormatarCPFCNPJ(txbCNPJ.Text);
+            pnPesFis.Visible = fornecedor.EhPessoaFisica(DTO);
         }
 
         private void txbTelefone_Leave(object sender, EventArgs e)
@@ -102,7 +71,11 @@ namespace Interface
             txbNome.Text = DTO.Nome;
             txbCNPJ.Text = DTO.CPFCNPJ;
             txbTelefone.Text = DTO.Telefone;
+            txbRG.Text = DTO.RG;
+            dtpNasc.Value = DTO.DataNascimento.Date;
             cbEmpresa.Text = empresa.Dados(DTO.IDF_EMPRESA).Nome;
+
+            txbCNPJ_Leave(this, null);
         }
 
         protected override void SalvarRegistro()
@@ -111,6 +84,8 @@ namespace Interface
             DTO.Nome = txbNome.Text;
             DTO.CPFCNPJ = txbCNPJ.Text;
             DTO.Telefone = txbTelefone.Text;
+            DTO.RG = txbRG.Text;
+            DTO.DataNascimento = dtpNasc.Value;
             DTO.IDF_EMPRESA = Convert.ToInt32(cbEmpresa.SelectedValue.ToString());
             DTO.DataHoraCadastro = DateTime.Now;            
 

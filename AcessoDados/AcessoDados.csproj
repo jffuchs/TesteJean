@@ -88,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcessoBD.cs" />
+    <Compile Include="Atributos.cs" />
+    <Compile Include="Campo.cs" />
+    <Compile Include="DataAccess.cs" />
     <Compile Include="DTO\FornecedorDTO.cs" />
     <Compile Include="DTO\UFDTO.cs" />
     <Compile Include="Fornecedor.cs" />

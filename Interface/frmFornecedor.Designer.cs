@@ -42,12 +42,18 @@ namespace Interface
             this.cbEmpresa = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.pnPesFis = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txbRG = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtpNasc = new System.Windows.Forms.DateTimePicker();
             this.tcAbas.SuspendLayout();
             this.tpLista.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnEdicao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.panel5.SuspendLayout();
+            this.pnPesFis.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAbas
@@ -65,6 +71,7 @@ namespace Interface
             // 
             // pnEdicao
             // 
+            this.pnEdicao.Controls.Add(this.pnPesFis);
             this.pnEdicao.Controls.Add(this.panel5);
             this.pnEdicao.Controls.Add(this.txbTelefone);
             this.pnEdicao.Controls.Add(this.label1);
@@ -207,6 +214,52 @@ namespace Interface
             this.label5.TabIndex = 9;
             this.label5.Text = "Empresa";
             // 
+            // pnPesFis
+            // 
+            this.pnPesFis.Controls.Add(this.dtpNasc);
+            this.pnPesFis.Controls.Add(this.label7);
+            this.pnPesFis.Controls.Add(this.txbRG);
+            this.pnPesFis.Controls.Add(this.label8);
+            this.pnPesFis.Location = new System.Drawing.Point(4, 174);
+            this.pnPesFis.Name = "pnPesFis";
+            this.pnPesFis.Size = new System.Drawing.Size(396, 58);
+            this.pnPesFis.TabIndex = 11;
+            this.pnPesFis.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Nascimento";
+            // 
+            // txbRG
+            // 
+            this.txbRG.Location = new System.Drawing.Point(72, 3);
+            this.txbRG.MaxLength = 14;
+            this.txbRG.Name = "txbRG";
+            this.txbRG.Size = new System.Drawing.Size(138, 20);
+            this.txbRG.TabIndex = 11;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 13);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "R.G.";
+            // 
+            // dtpNasc
+            // 
+            this.dtpNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNasc.Location = new System.Drawing.Point(72, 29);
+            this.dtpNasc.Name = "dtpNasc";
+            this.dtpNasc.Size = new System.Drawing.Size(97, 20);
+            this.dtpNasc.TabIndex = 15;
+            // 
             // frmFornecedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,6 +274,8 @@ namespace Interface
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.pnPesFis.ResumeLayout(false);
+            this.pnPesFis.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -239,5 +294,10 @@ namespace Interface
         private System.Windows.Forms.TextBox txbEmpCNPJ;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel pnPesFis;
+        private System.Windows.Forms.DateTimePicker dtpNasc;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txbRG;
+        private System.Windows.Forms.Label label8;
     }
 }
