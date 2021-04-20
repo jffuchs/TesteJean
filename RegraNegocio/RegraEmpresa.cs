@@ -4,9 +4,14 @@ using System.Text;
 
 namespace RegraNegocio
 {
-    public class RegraEmpresa
+    public class RegraEmpresa : RegraNegocioBase
     {
         AcessoDados.Empresa acessoEmpresa = new AcessoDados.Empresa();
+
+        public RegraEmpresa()
+        {
+            NomeCampoID = new AcessoDados.DTO.EmpresaDTO().NomeCampoID;
+        }
 
         public void IncluirAlterar(AcessoDados.DTO.EmpresaDTO dados)
         {
@@ -20,7 +25,7 @@ namespace RegraNegocio
             }
         }
 
-        public void Excluir(int idEmpresa)
+        public override void Excluir(int idEmpresa)
         {
             try
             {
@@ -32,7 +37,7 @@ namespace RegraNegocio
             }
         }
 
-        public DataTable CarregarRegistros(string filtros = "")
+        public override DataTable CarregarRegistros(string filtros = "")
         {
             StringBuilder str = new StringBuilder();
             str.AppendLine("SELECT ID_EMPRESA, UF_SIGLA, EMP_CNPJ, EMP_NOME FROM EMPRESA");
@@ -44,7 +49,7 @@ namespace RegraNegocio
             str.AppendLine("ORDER BY EMP_NOME");
             return acessoEmpresa.RetornarDataTable(str.ToString());
         }
-        
+
         public AcessoDados.DTO.EmpresaDTO Dados(int iDF_EMPRESA)
         {
             return acessoEmpresa.Dados(iDF_EMPRESA);

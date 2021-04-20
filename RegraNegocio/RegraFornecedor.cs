@@ -7,9 +7,19 @@ using System.Threading.Tasks;
 
 namespace RegraNegocio
 {
-    public class RegraFornecedor
+    public class RegraFornecedor : RegraNegocioBase
     {
-        AcessoDados.Fornecedor acessoFornecedor = new AcessoDados.Fornecedor();
+        AcessoDados.Fornecedor acessoFornecedor = new AcessoDados.Fornecedor();        
+
+        public RegraFornecedor()
+        {
+            NomeCampoID = new AcessoDados.DTO.FornecedorDTO().NomeCampoID;
+        }
+
+        public bool EhPessoaFisica(AcessoDados.DTO.FornecedorDTO dados)
+        {
+            return dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoa.Fisica;
+        }
 
         public void IncluirAlterar(AcessoDados.DTO.FornecedorDTO dados)
         {
@@ -37,7 +47,7 @@ namespace RegraNegocio
             }
         }
 
-        public void Excluir(int idFornecedor)
+        public override void Excluir(int idFornecedor)
         {
             try
             {
@@ -49,7 +59,7 @@ namespace RegraNegocio
             }
         }
 
-        public DataTable CarregarRegistros(string filtros = "")
+        public override DataTable CarregarRegistros(string filtros = "")
         {
             StringBuilder str = new StringBuilder();
             str.AppendLine("SELECT ID_FORNECEDOR, FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, FOR_DTHRCAD FROM FORNECEDOR");

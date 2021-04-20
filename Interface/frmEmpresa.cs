@@ -20,6 +20,9 @@ namespace Interface
             InitializeComponent();
             empresa = new RegraNegocio.RegraEmpresa();
             UF = new RegraNegocio.RegraUF();
+
+            regraNegocio = new RegraNegocio.RegraEmpresa();
+            cbUF.DataSource = UF.CarregarRegistros();
         }
 
         protected override void Inicializar()
@@ -29,27 +32,6 @@ namespace Interface
             GridView.Columns[2].HeaderText = "CNPJ";
             GridView.Columns[3].HeaderText = "Razão Social";
             GridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            cbUF.DataSource = UF.CarregarRegistros();
-        }
-
-        protected override int RetornarGridID()
-        {
-            return Convert.ToInt32(GridView.Rows[GridView.CurrentRow.Index].Cells[DTO.NomeCampoID].Value.ToString());
-        }
-
-        protected override int CarregarTodosRegistros()
-        {
-            empresa = new RegraNegocio.RegraEmpresa();
-            GridView.DataSource = empresa.CarregarRegistros();
-            return GridView.RowCount;
-        }
-
-        protected override int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, string tipoCampo)
-        {
-            empresa = new RegraNegocio.RegraEmpresa();
-            GridView.DataSource = empresa.CarregarRegistros(string.Format("{0} LIKE '{1}%'", nomeCampo, valorCampo));
-            return GridView.RowCount;
         }
 
         protected override void CarregarRegistro()
@@ -68,11 +50,11 @@ namespace Interface
             DTO.CNPJ = txbCNPJ.Text;
             DTO.IDF_UF = Convert.ToInt32(cbUF.SelectedValue.ToString());
 
-            empresa.IncluirAlterar(DTO);            
+            empresa.IncluirAlterar(DTO);
         }
 
         protected override void ExcluirRegistro()
-        {
+        {            
             empresa.Excluir(idAtual);
         }
 

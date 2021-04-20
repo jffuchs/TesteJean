@@ -45,6 +45,7 @@
     <Compile Include="RegraEmpresa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegraFornecedor.cs" />
+    <Compile Include="RegraNegocioBase.cs" />
     <Compile Include="RegraUF.cs" />
     <Compile Include="Util.cs" />
   </ItemGroup>

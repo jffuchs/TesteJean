@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RegraNegocio;
+using System;
 using System.Windows.Forms;
 
 namespace Interface
@@ -8,7 +9,9 @@ namespace Interface
         protected int idAtual = 0;
         private int totalRegistros = 0;
         private string nomeColunaSelecionada;
-        private string tipoColunaSelecionada;        
+        private string tipoColunaSelecionada;
+
+        protected RegraNegocioBase regraNegocio;
 
         public frmBase()
         {
@@ -25,8 +28,7 @@ namespace Interface
                     tpLista.Parent = null;
 
                     btnLimpar.Text = this.idAtual == 0 ? "Limpar" : "Restaurar";
-
-                    tpEdicao.Text = idAtual == 0 ? "Incluíndo" : "Alterando";
+                    tpEdicao.Text = this.idAtual == 0 ? "Incluíndo" : "Alterando";
 
                     LimparControles(pnEdicao);
                 }
@@ -117,12 +119,13 @@ namespace Interface
 
         protected virtual int RetornarGridID()
         {
-            return 0;
+            return Convert.ToInt32(GridView.Rows[GridView.CurrentRow.Index].Cells[regraNegocio.NomeCampoID].Value.ToString());            
         }
 
-        protected virtual int CarregarTodosRegistros()
+        private int CarregarTodosRegistros()
         {
-            return 0;
+            GridView.DataSource = regraNegocio.CarregarRegistros();
+            return GridView.RowCount;
         }
 
         protected virtual void CarregarRegistro()
@@ -139,13 +142,17 @@ namespace Interface
 
         protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, string tipoCampo)
         {
-            return 0;
+            GridView.DataSource = regraNegocio.CarregarRegistrosFiltrados(nomeCampo, valorCampo, tipoCampo);
+            return GridView.RowCount;
         }
 
         private void FrmBase_Load(object sender, EventArgs e)
-        {
+        {            
             AjustarComponentes(false);
-            totalRegistros = CarregarTodosRegistros();
+            if (!this.DesignMode)
+            {
+                totalRegistros = CarregarTodosRegistros();
+            }               
             AjustarBotoes();
             Inicializar();
         }
@@ -185,8 +192,8 @@ namespace Interface
                 try
                 {
                     idAtual = RetornarGridID();
-                    ExcluirRegistro();
-                    totalRegistros = CarregarTodosRegistros();
+                    regraNegocio.Excluir(idAtual);
+                    totalRegistros = this.CarregarTodosRegistros();
                 }
                 catch (Exception ex)
                 {
