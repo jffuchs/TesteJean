@@ -69,5 +69,23 @@ namespace AcessoDados
             }
             return aux;
         }
+
+        public DTO.FornecedorDTO Dados(string CPFCNPJ)
+        {
+            DTO.FornecedorDTO aux = new DTO.FornecedorDTO();
+
+            dadosTabela = RetornarDataTable(String.Format("SELECT * FROM FORNECEDOR WHERE FOR_CPFCNPJ = '{0}'", CPFCNPJ));
+            if (dadosTabela.Rows.Count > 0)
+            {
+                aux.ID = Convert.ToInt32(dadosTabela.Rows[0]["ID_FORNECEDOR"].ToString());
+                aux.Nome = dadosTabela.Rows[0]["FOR_NOME"].ToString();
+                aux.CPFCNPJ = CPFCNPJ;
+                aux.Telefone = dadosTabela.Rows[0]["FOR_TELEFONE"].ToString();
+                aux.IDF_EMPRESA = Convert.ToInt32(dadosTabela.Rows[0]["IDF_EMPRESA"].ToString());
+                aux.RG = dadosTabela.Rows[0]["FOR_RG"].ToString();
+                aux.DataNascimento = DateTime.Parse(dadosTabela.Rows[0]["FOR_DTNASC"].ToString());
+            }
+            return aux;
+        }
     }
 }
