@@ -47,7 +47,7 @@ namespace Interface
             btnExcluir.Enabled = btnAlterar.Enabled;
         }
 
-        private void LimparControles(Control controle)
+        protected virtual void LimparControles(Control controle)
         {
             foreach (Control ctl in controle.Controls)
             {

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace RegraNegocio
 {
-    public class RegraUF
-    {
+    public class RegraUF : RegraNegocioBase
+{
         AcessoDados.UF acessoUF = new AcessoDados.UF();
 
         public DataTable CarregarRegistros()

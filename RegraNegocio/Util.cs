@@ -29,13 +29,20 @@ namespace RegraNegocio
         public static string FormatarCPFCNPJ(string CPFCNPJ)
         {
             string aux = Util.RetornarApenasNumeros(CPFCNPJ);
-            if (aux.Length == 11)
+            try
             {
-                return Convert.ToUInt64(aux).ToString(@"000\.000\.000\-00");
+                if (aux.Length == 11)
+                {
+                    return Convert.ToUInt64(aux).ToString(@"000\.000\.000\-00");
+                }
+                else
+                {
+                    return Convert.ToUInt64(aux).ToString(@"00\.000\.000\/0000\-00");
+                }
             }
-            else
+            catch (Exception)
             {
-                return Convert.ToUInt64(aux).ToString(@"00\.000\.000\/0000\-00");
+                return CPFCNPJ;
             }
         }
 
@@ -55,13 +62,19 @@ namespace RegraNegocio
         public static string FormatarTelefone(string fone)
         {
             string strMascara = "{0:(00)0000-0000}";
-            //converter o texto em número
-            long lngNumero = Convert.ToInt64(RetornarApenasNumeros(fone));
-
-            if (fone.Length == 11)
-                strMascara = "{0:(00)00000-0000}";
-
-            return string.Format(strMascara, lngNumero);
+            try
+            {
+                long lngNumero = Convert.ToInt64(RetornarApenasNumeros(fone));
+                if (fone.Length == 11)
+                {
+                    strMascara = "{0:(00)00000-0000}";
+                }
+                return string.Format(strMascara, lngNumero);
+            }
+            catch (Exception)
+            {
+                return fone;
+            }
         }
     }
 }

@@ -41,7 +41,9 @@ namespace AcessoDados
             {
                 comandoSql.CommandText = String.Format("DELETE FROM {0} WHERE {1} = {2}", nomeTabela, nomeCampoID, idTabela);
                 comandoSql.Connection = conexao.Conectar();
-                return comandoSql.ExecuteNonQuery() > 0;
+                bool ok = comandoSql.ExecuteNonQuery() > 0;
+                conexao.Desconectar();
+                return ok;
             }
             catch (Exception ex)
             {

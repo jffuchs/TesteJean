@@ -26,6 +26,16 @@ namespace RegraNegocio
             RegraEmpresa empresa = new RegraEmpresa();
             RegraUF UF = new RegraUF();
 
+            if (dados.IDF_EMPRESA <= 0)
+            {
+                throw new Exception("Selecione uma empresa!");
+            }
+
+            if (acessoFornecedor.Dados(dados.CPFCNPJ).ID > 0)
+            {
+                throw new Exception("Já existe um Fornecedor com este CPF/CNPJ!");
+            }
+
             if (dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoa.Fisica)
             {
                 if (UF.Dados(empresa.Dados(dados.IDF_EMPRESA).IDF_UF).Sigla == "PR")

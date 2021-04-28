@@ -34,13 +34,12 @@ namespace Interface
 
             GridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
-        
-        /*protected override int CarregarTodosRegistros()
+
+        protected override void LimparControles(Control controle)
         {
-            fornecedor = new RegraNegocio.RegraFornecedor();
-            GridView.DataSource = fornecedor.CarregarRegistros();
-            return GridView.RowCount;
-        }*/
+            base.LimparControles(controle);
+            pnPesFis.Visible = false;
+        }
 
         private void txbCNPJ_Enter(object sender, EventArgs e)
         {
@@ -74,7 +73,7 @@ namespace Interface
             txbRG.Text = DTO.RG;
             dtpNasc.Value = DTO.DataNascimento.Date;
             cbEmpresa.Text = empresa.Dados(DTO.IDF_EMPRESA).Nome;
-
+            
             txbCNPJ_Leave(this, null);
         }
 
@@ -99,6 +98,12 @@ namespace Interface
 
         private void cbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txbNome.Enabled = !(cbEmpresa.SelectedValue == null);
+            txbCNPJ.Enabled = txbNome.Enabled;
+            txbTelefone.Enabled = txbNome.Enabled;
+            txbRG.Enabled = txbNome.Enabled;
+            dtpNasc.Enabled = txbNome.Enabled;
+
             if (cbEmpresa.SelectedValue == null)
             {
                 return;
@@ -115,6 +120,6 @@ namespace Interface
                 ufDTO = new RegraNegocio.RegraUF().Dados(EmpDTO.IDF_UF);
                 txbEmpUF.Text = ufDTO.Sigla;
             }
-        }        
+        }
     }
 }

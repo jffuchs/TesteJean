@@ -43,10 +43,10 @@ namespace Interface
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pnPesFis = new System.Windows.Forms.Panel();
+            this.dtpNasc = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.txbRG = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.dtpNasc = new System.Windows.Forms.DateTimePicker();
             this.tcAbas.SuspendLayout();
             this.tpLista.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -194,7 +194,7 @@ namespace Interface
             this.cbEmpresa.Size = new System.Drawing.Size(494, 21);
             this.cbEmpresa.TabIndex = 0;
             this.cbEmpresa.ValueMember = "ID_EMPRESA";
-            this.cbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cbEmpresa_SelectedIndexChanged);
+            this.cbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cbEmpresa_SelectedIndexChanged);            
             // 
             // label4
             // 
@@ -226,6 +226,14 @@ namespace Interface
             this.pnPesFis.TabIndex = 11;
             this.pnPesFis.Visible = false;
             // 
+            // dtpNasc
+            // 
+            this.dtpNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNasc.Location = new System.Drawing.Point(72, 29);
+            this.dtpNasc.Name = "dtpNasc";
+            this.dtpNasc.Size = new System.Drawing.Size(97, 20);
+            this.dtpNasc.TabIndex = 15;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -251,14 +259,6 @@ namespace Interface
             this.label8.Size = new System.Drawing.Size(29, 13);
             this.label8.TabIndex = 13;
             this.label8.Text = "R.G.";
-            // 
-            // dtpNasc
-            // 
-            this.dtpNasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpNasc.Location = new System.Drawing.Point(72, 29);
-            this.dtpNasc.Name = "dtpNasc";
-            this.dtpNasc.Size = new System.Drawing.Size(97, 20);
-            this.dtpNasc.TabIndex = 15;
             // 
             // frmFornecedor
             // 
