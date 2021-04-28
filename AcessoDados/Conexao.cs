@@ -1,23 +1,23 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using System.Data.SQLite;
+using System.IO;
 
 namespace AcessoDados
 {
     public class Conexao
     {
-        SqlConnection conn = new SqlConnection();
+        SQLiteConnection conn = new SQLiteConnection();
 
         public Conexao()
         {
-            conn.ConnectionString = @"Data Source=(local)\SQLEXPRESS;Initial Catalog=TesteJean;Integrated Security=True";
+            conn.ConnectionString = @"URI=file:C:\TesteJean\Data\TesteJean.db";            
         }
         
-        public SqlConnection Conectar()
+        public SQLiteConnection Conectar()
         {
             if (conn.State == System.Data.ConnectionState.Closed)
             {

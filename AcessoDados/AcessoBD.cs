@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace AcessoDados
     {
         protected Conexao conexao;
         private StringBuilder strSQL;
-        private SqlCommand comandoSql;
+        private SQLiteCommand comandoSql;
         protected DataTable dadosTabela;        
         protected string nomeTabela = "";
         protected string nomeCampoID = "";
@@ -31,7 +32,7 @@ namespace AcessoDados
         {
             conexao = new Conexao();
             strSQL = new StringBuilder();
-            comandoSql = new SqlCommand();
+            comandoSql = new SQLiteCommand();
             dadosTabela = new DataTable();
         }
 
@@ -52,15 +53,12 @@ namespace AcessoDados
         }
 
         public DataTable RetornarDataTable(string strComando)
-        {
-            strSQL.Clear();
-            strSQL.Append(strComando);
-            
-            comandoSql.CommandText = strSQL.ToString();
-            comandoSql.Connection = conexao.Conectar();
+        {         
+            var sqlAdapter = new SQLiteDataAdapter(strComando, conexao.Conectar());
 
-            DataTable tabela = new DataTable();            
-            tabela.Load(comandoSql.ExecuteReader());
+            DataTable tabela = new DataTable();
+            sqlAdapter.AcceptChangesDuringFill = false;
+            sqlAdapter.Fill(tabela);
 
             return tabela;
         }

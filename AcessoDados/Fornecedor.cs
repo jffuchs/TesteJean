@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace AcessoDados
 {
     public class Fornecedor : AcessoBD
     {
-        SqlCommand cmd = new SqlCommand();
+        SQLiteCommand cmd = new SQLiteCommand();
 
         public Fornecedor()
         {
@@ -23,8 +23,7 @@ namespace AcessoDados
             if (dados.ID <= 0)
             {
                 str.AppendLine("INSERT INTO Fornecedor (FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, IDF_EMPRESA, FOR_DTHRCAD, FOR_RG, FOR_DTNASC)");
-                str.AppendLine("VALUES (@nome, @cnpj, @fone, @IDF_EMPRESA, @dtHrCad, @RG, @dtnasc)");
-                cmd.Parameters.AddWithValue("@dtHrCad", DateTime.Now.Date);
+                str.AppendLine("VALUES (@nome, @cnpj, @fone, @IDF_EMPRESA, @dtHrCad, @RG, @dtnasc)");                
             }
             else
             {
@@ -34,11 +33,15 @@ namespace AcessoDados
             cmd.CommandText = str.ToString();
 
             cmd.Parameters.Clear();
+            if (dados.ID <= 0)
+            {
+                cmd.Parameters.AddWithValue("@dtHrCad", DateTime.Now.ToString("dd/MM/yyyy"));
+            }                
             cmd.Parameters.AddWithValue("@nome", dados.Nome);
             cmd.Parameters.AddWithValue("@cnpj", dados.CPFCNPJ);
             cmd.Parameters.AddWithValue("@fone", dados.Telefone);
             cmd.Parameters.AddWithValue("@RG", dados.RG);
-            cmd.Parameters.AddWithValue("@dtnasc", dados.DataNascimento);
+            cmd.Parameters.AddWithValue("@dtnasc", dados.DataNascimento.ToString("dd/MM/yyyy"));
             cmd.Parameters.AddWithValue("@IDF_EMPRESA", dados.IDF_EMPRESA);
             try
             {
@@ -46,7 +49,7 @@ namespace AcessoDados
                 cmd.ExecuteNonQuery();
                 conexao.Desconectar();
             }
-            catch (SqlException ex)
+            catch (SQLiteException ex)
             {
                 throw new Exception("Erro ao incluir/alterar fornecedor.\n" + ex.Message);
             }

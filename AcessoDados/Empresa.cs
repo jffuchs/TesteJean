@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace AcessoDados
 {
     public class Empresa : AcessoBD
     {        
-        SqlCommand cmd = new SqlCommand();
+        SQLiteCommand cmd = new SQLiteCommand();
 
         public Empresa()
         {
@@ -42,7 +42,7 @@ namespace AcessoDados
                 cmd.ExecuteNonQuery();
                 conexao.Desconectar();
             }
-            catch (SqlException ex)
+            catch (SQLiteException ex)
             {                
                 throw new Exception("Erro ao incluir/alterar empresa.\n"+ ex.Message);
             }
