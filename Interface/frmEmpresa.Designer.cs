@@ -38,9 +38,7 @@ namespace Interface
             this.label5 = new System.Windows.Forms.Label();
             this.tcAbas.SuspendLayout();
             this.tpLista.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.pnEdicao.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tcAbas
@@ -70,10 +68,6 @@ namespace Interface
             // 
             this.panel3.Location = new System.Drawing.Point(3, 262);
             this.panel3.Size = new System.Drawing.Size(555, 34);
-            // 
-            // GridView
-            // 
-            this.GridView.Size = new System.Drawing.Size(470, 245);
             // 
             // label1
             // 
@@ -148,10 +142,8 @@ namespace Interface
             this.Text = "Empresas";
             this.tcAbas.ResumeLayout(false);
             this.tpLista.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.pnEdicao.ResumeLayout(false);
             this.pnEdicao.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.ResumeLayout(false);
 
         }
