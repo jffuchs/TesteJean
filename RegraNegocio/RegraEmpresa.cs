@@ -15,6 +15,20 @@ namespace RegraNegocio
 
         public void IncluirAlterar(AcessoDados.DTO.EmpresaDTO dados)
         {
+            if (dados.IDF_UF <= 0)
+            {
+                throw new Exception("Selecione o estado!");
+            }
+
+            AcessoDados.DTO.EmpresaDTO dadosAux = acessoEmpresa.Dados(dados.CNPJ);
+            if (dadosAux.ID > 0)
+            {
+                if (dadosAux.ID != dados.ID)
+                {
+                    throw new Exception("Já existe uma Empresa com este CNPJ!");
+                }
+            }
+
             try
             {
                 acessoEmpresa.IncluirAlterar(dados);

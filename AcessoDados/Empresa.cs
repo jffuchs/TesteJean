@@ -59,5 +59,20 @@ namespace AcessoDados
             }
             return aux;
         }
+
+        public DTO.EmpresaDTO Dados(string CNPJ)
+        {
+            DTO.EmpresaDTO aux = new DTO.EmpresaDTO();
+
+            dadosTabela = RetornarDataTable(String.Format("SELECT * FROM EMPRESA WHERE EMP_CNPJ = '{0}'", CNPJ));
+            if (dadosTabela.Rows.Count > 0)
+            {
+                aux.ID = Convert.ToInt32(dadosTabela.Rows[0]["ID_EMPRESA"].ToString());
+                aux.Nome = dadosTabela.Rows[0]["EMP_NOME"].ToString();
+                aux.CNPJ = CNPJ;
+                aux.IDF_UF = Convert.ToInt32(dadosTabela.Rows[0]["IDF_UF"].ToString());
+            }
+            return aux;
+        }
     }
 }

@@ -21,6 +21,12 @@ namespace Interface
             cbUF.DataSource = UF.CarregarRegistros();
         }
 
+        protected override void LimparControles(Control controle)
+        {
+            base.LimparControles(controle);
+            cbUF.SelectedIndex = 22;
+        }
+
         protected override void Inicializar()
         {
             GridView.Columns[0].HeaderText = "ID";
