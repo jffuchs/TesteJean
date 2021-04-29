@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AcessoDados.DTO
 {
     public class FornecedorDTO
     {
-        public enum TipoPessoa
+        public enum TipoPessoaEnum
         {
             Fisica,
             Juridica
@@ -27,26 +23,26 @@ namespace AcessoDados.DTO
         public string RG { get; set; }
         public DateTime DataNascimento { get; set; }
 
-        public string CPFCNPJ 
+        public string CPFCNPJ
         {
             get { return cnpj; }
             set { cnpj = value; }
         }
-        
-        public TipoPessoa Pessoa 
-        { 
-            get 
+
+        public TipoPessoaEnum Pessoa
+        {
+            get
             {
                 if (cnpj.Length == 11)
                 {
-                    return TipoPessoa.Fisica;
+                    return TipoPessoaEnum.Fisica;
                 }
                 else
                 {
-                    return TipoPessoa.Juridica;
+                    return TipoPessoaEnum.Juridica;
                 }
                 ;
-            } 
+            }
         }
     }
 }

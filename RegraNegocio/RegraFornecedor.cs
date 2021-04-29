@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RegraNegocio
 {
     public class RegraFornecedor : RegraNegocioBase
     {
-        AcessoDados.Fornecedor acessoFornecedor = new AcessoDados.Fornecedor();        
+        AcessoDados.Fornecedor acessoFornecedor = new AcessoDados.Fornecedor();
 
         public RegraFornecedor()
         {
@@ -18,43 +15,12 @@ namespace RegraNegocio
 
         public bool EhPessoaFisica(AcessoDados.DTO.FornecedorDTO dados)
         {
-            return dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoa.Fisica;
+            return dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoaEnum.Fisica;
         }
 
-        public void IncluirAlterar(AcessoDados.DTO.FornecedorDTO dados)
+        public AcessoDados.DTO.FornecedorDTO Dados(int idFornecedor)
         {
-            RegraEmpresa empresa = new RegraEmpresa();
-            RegraUF UF = new RegraUF();
-
-            if (dados.IDF_EMPRESA <= 0)
-            {
-                throw new Exception("Selecione uma empresa!");
-            }
-
-            if (acessoFornecedor.Dados(dados.CPFCNPJ).ID > 0)
-            {
-                throw new Exception("Já existe um Fornecedor com este CPF/CNPJ!");
-            }
-
-            if (dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoa.Fisica)
-            {
-                if (UF.Dados(empresa.Dados(dados.IDF_EMPRESA).IDF_UF).Sigla == "PR")
-                {
-                    if (Util.CalcularIdade(dados.DataHoraCadastro) < 18)
-                    {
-                        throw new Exception("Fornecedor Pessoa Física deve ser maior de idade!");
-                    }                     
-                }
-            }            
-
-            try
-            {
-                acessoFornecedor.IncluirAlterar(dados);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return acessoFornecedor.Dados(idFornecedor);
         }
 
         public override void Excluir(int idFornecedor)
@@ -75,14 +41,49 @@ namespace RegraNegocio
             str.AppendLine("SELECT ID_FORNECEDOR, FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, FOR_DTHRCAD FROM FORNECEDOR");
             if (filtros.Trim() != "")
             {
-                str.AppendLine("WHERE "+filtros);
+                str.AppendLine("WHERE " + filtros);
             }
             return acessoFornecedor.RetornarDataTable(str.ToString());
         }
 
-        public AcessoDados.DTO.FornecedorDTO Dados(int idFornecedor)
+        public void IncluirAlterar(AcessoDados.DTO.FornecedorDTO dados)
         {
-            return acessoFornecedor.Dados(idFornecedor);
+            RegraEmpresa empresa = new RegraEmpresa();
+            RegraUF UF = new RegraUF();
+
+            if (dados.IDF_EMPRESA <= 0)
+            {
+                throw new Exception("Selecione uma empresa!");
+            }
+
+            AcessoDados.DTO.FornecedorDTO dadosAux = acessoFornecedor.Dados(dados.CPFCNPJ);
+            if (dadosAux.ID > 0)
+            {
+                if (dadosAux.ID != dados.ID)
+                {
+                    throw new Exception("Já existe um Fornecedor com este CPF/CNPJ!");
+                }
+            }
+
+            if (dados.Pessoa == AcessoDados.DTO.FornecedorDTO.TipoPessoaEnum.Fisica)
+            {
+                if (UF.Dados(empresa.Dados(dados.IDF_EMPRESA).IDF_UF).Sigla == "PR")
+                {
+                    if (Util.CalcularIdade(dados.DataHoraCadastro) < 18)
+                    {
+                        throw new Exception("Fornecedor Pessoa Física deve ser maior de idade!");
+                    }
+                }
+            }
+
+            try
+            {
+                acessoFornecedor.IncluirAlterar(dados);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

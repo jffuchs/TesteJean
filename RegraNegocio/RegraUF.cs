@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace RegraNegocio
 {
     public class RegraUF : RegraNegocioBase
-{
+    {
         AcessoDados.UF acessoUF = new AcessoDados.UF();
 
         public DataTable CarregarRegistros()

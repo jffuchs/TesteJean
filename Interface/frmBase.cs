@@ -1,5 +1,6 @@
 ﻿using RegraNegocio;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Interface
@@ -36,6 +37,7 @@ namespace Interface
                 {
                     tpLista.Parent = tcAbas;
                     tpEdicao.Parent = null;
+                    AjustarBotoes();
                     GridView.Focus();
                 }
             }
@@ -53,6 +55,8 @@ namespace Interface
             {
                 if (ctl is TextBox)
                     (ctl as TextBox).Text = "";
+                if (ctl is DateTimePicker)
+                    (ctl as DateTimePicker).Text = "";
                 if (ctl is ComboBox)
                     (ctl as ComboBox).SelectedIndex = -1;
                 if (ctl is ListBox)
@@ -77,7 +81,7 @@ namespace Interface
                     {
                         ctr.Focus();
                         break;
-                    }                    
+                    }
                 }
             }
         }
@@ -119,13 +123,15 @@ namespace Interface
 
         protected virtual int RetornarGridID()
         {
-            return Convert.ToInt32(GridView.Rows[GridView.CurrentRow.Index].Cells[regraNegocio.NomeCampoID].Value.ToString());            
+            return Convert.ToInt32(GridView.Rows[GridView.CurrentRow.Index].Cells[regraNegocio.NomeCampoID].Value.ToString());
         }
 
         private int CarregarTodosRegistros()
         {
             GridView.DataSource = regraNegocio.CarregarRegistros();
-            return GridView.RowCount;
+
+            //DataTable dt = (GridView.DataSource as DataTable);
+            return (GridView.DataSource as DataTable).Rows.Count;
         }
 
         protected virtual void CarregarRegistro()
@@ -137,7 +143,7 @@ namespace Interface
         }
 
         protected virtual void ExcluirRegistro()
-        {        
+        {
         }
 
         protected virtual int CarregarRegistrosFiltrados(string nomeCampo, string valorCampo, string tipoCampo)
@@ -147,12 +153,12 @@ namespace Interface
         }
 
         private void FrmBase_Load(object sender, EventArgs e)
-        {            
+        {
             AjustarComponentes(false);
             if (!this.DesignMode)
             {
                 totalRegistros = CarregarTodosRegistros();
-            }               
+            }
             AjustarBotoes();
             Inicializar();
         }
@@ -193,7 +199,8 @@ namespace Interface
                 {
                     idAtual = RetornarGridID();
                     regraNegocio.Excluir(idAtual);
-                    totalRegistros = this.CarregarTodosRegistros();
+                    totalRegistros = CarregarTodosRegistros();
+                    AjustarBotoes();
                 }
                 catch (Exception ex)
                 {
@@ -237,18 +244,13 @@ namespace Interface
             try
             {
                 SalvarRegistro();
-                AjustarComponentes(false);
                 totalRegistros = CarregarTodosRegistros();
+                AjustarComponentes(false);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void GridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            
         }
 
         private void txbPesquisa_TextChanged(object sender, EventArgs e)

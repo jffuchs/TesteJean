@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AcessoDados
 {
@@ -19,7 +15,7 @@ namespace AcessoDados
             {
                 aux.ID = idf_uf;
                 aux.Sigla = tabela.Rows[0]["UF_SIGLA"].ToString();
-                aux.Nome = tabela.Rows[0]["UF_NOME"].ToString();                
+                aux.Nome = tabela.Rows[0]["UF_NOME"].ToString();
             }
             return aux;
         }

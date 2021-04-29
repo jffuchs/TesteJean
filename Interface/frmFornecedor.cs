@@ -1,10 +1,5 @@
 ﻿using RegraNegocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Interface
@@ -18,6 +13,7 @@ namespace Interface
         public frmFornecedor()
         {
             InitializeComponent();
+
             fornecedor = new RegraNegocio.RegraFornecedor();
             empresa = new RegraNegocio.RegraEmpresa();
             regraNegocio = new RegraNegocio.RegraFornecedor();
@@ -47,7 +43,7 @@ namespace Interface
         }
 
         private void txbCNPJ_Leave(object sender, EventArgs e)
-        {            
+        {
             DTO.CPFCNPJ = Util.RetornarApenasNumeros(txbCNPJ.Text);
             txbCNPJ.Text = Util.FormatarCPFCNPJ(txbCNPJ.Text);
             pnPesFis.Visible = fornecedor.EhPessoaFisica(DTO);
@@ -73,7 +69,7 @@ namespace Interface
             txbRG.Text = DTO.RG;
             dtpNasc.Value = DTO.DataNascimento.Date;
             cbEmpresa.Text = empresa.Dados(DTO.IDF_EMPRESA).Nome;
-            
+
             txbCNPJ_Leave(this, null);
         }
 
@@ -86,7 +82,7 @@ namespace Interface
             DTO.RG = txbRG.Text;
             DTO.DataNascimento = dtpNasc.Value;
             DTO.IDF_EMPRESA = Convert.ToInt32(cbEmpresa.SelectedValue.ToString());
-            DTO.DataHoraCadastro = DateTime.Now;            
+            DTO.DataHoraCadastro = DateTime.Now;
 
             fornecedor.IncluirAlterar(DTO);
         }

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AcessoDados
 {
@@ -14,7 +10,7 @@ namespace AcessoDados
         protected Conexao conexao;
         private StringBuilder strSQL;
         private SQLiteCommand comandoSql;
-        protected DataTable dadosTabela;        
+        protected DataTable dadosTabela;
         protected string nomeTabela = "";
         protected string nomeCampoID = "";
 
@@ -53,7 +49,7 @@ namespace AcessoDados
         }
 
         public DataTable RetornarDataTable(string strComando)
-        {         
+        {
             var sqlAdapter = new SQLiteDataAdapter(strComando, conexao.Conectar());
 
             DataTable tabela = new DataTable();

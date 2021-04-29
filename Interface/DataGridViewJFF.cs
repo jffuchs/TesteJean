@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace Interface{
+namespace Interface
+{
 
     [Designer(typeof(System.Windows.Forms.Design.ControlDesigner))]
     public class DataGridViewJFF : DataGridView

@@ -1,10 +1,5 @@
 ﻿using RegraNegocio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Interface
@@ -18,6 +13,7 @@ namespace Interface
         public frmEmpresa()
         {
             InitializeComponent();
+
             empresa = new RegraNegocio.RegraEmpresa();
             UF = new RegraNegocio.RegraUF();
 
@@ -38,7 +34,7 @@ namespace Interface
         {
             DTO = new RegraNegocio.RegraEmpresa().Dados(idAtual);
 
-            txbNome.Text = DTO.Nome;            
+            txbNome.Text = DTO.Nome;
             txbCNPJ.Text = DTO.CNPJ;
             cbUF.Text = UF.Dados(DTO.IDF_UF).Nome;
         }
@@ -54,7 +50,7 @@ namespace Interface
         }
 
         protected override void ExcluirRegistro()
-        {            
+        {
             empresa.Excluir(idAtual);
         }
 

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AcessoDados
 {
@@ -23,7 +20,7 @@ namespace AcessoDados
             if (dados.ID <= 0)
             {
                 str.AppendLine("INSERT INTO Fornecedor (FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, IDF_EMPRESA, FOR_DTHRCAD, FOR_RG, FOR_DTNASC)");
-                str.AppendLine("VALUES (@nome, @cnpj, @fone, @IDF_EMPRESA, @dtHrCad, @RG, @dtnasc)");                
+                str.AppendLine("VALUES (@nome, @cnpj, @fone, @IDF_EMPRESA, @dtHrCad, @RG, @dtnasc)");
             }
             else
             {
@@ -36,7 +33,7 @@ namespace AcessoDados
             if (dados.ID <= 0)
             {
                 cmd.Parameters.AddWithValue("@dtHrCad", DateTime.Now.ToString("dd/MM/yyyy"));
-            }                
+            }
             cmd.Parameters.AddWithValue("@nome", dados.Nome);
             cmd.Parameters.AddWithValue("@cnpj", dados.CPFCNPJ);
             cmd.Parameters.AddWithValue("@fone", dados.Telefone);

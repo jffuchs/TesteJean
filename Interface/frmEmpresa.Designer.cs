@@ -164,6 +164,6 @@ namespace Interface
         private System.Windows.Forms.TextBox txbCNPJ;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbUF;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label5;        
     }
 }
