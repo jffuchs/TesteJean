@@ -23,12 +23,13 @@ namespace Interface
         protected override void Inicializar()
         {
             GridView.Columns[0].HeaderText = "ID";
-            GridView.Columns[1].HeaderText = "Nome";
-            GridView.Columns[2].HeaderText = "CPF/CNPJ";
-            GridView.Columns[3].HeaderText = "Telefone";
-            GridView.Columns[4].HeaderText = "Cadastro";
+            GridView.Columns[1].HeaderText = "Empresa";
+            GridView.Columns[2].HeaderText = "Nome";
+            GridView.Columns[3].HeaderText = "CPF/CNPJ";
+            GridView.Columns[4].HeaderText = "Telefone";
+            GridView.Columns[5].HeaderText = "Cadastro";
 
-            GridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            GridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         protected override void LimparControles(Control controle)

@@ -29,7 +29,6 @@ namespace Interface
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,7 +50,6 @@ namespace Interface
             this.btnOK = new System.Windows.Forms.Button();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.Tempo = new System.Windows.Forms.Timer(this.components);
             this.tcAbas.SuspendLayout();
             this.tpLista.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -314,7 +312,6 @@ namespace Interface
         private System.Windows.Forms.Button btnFechar;
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar;
-        private System.Windows.Forms.Timer Tempo;
         public System.Windows.Forms.TabControl tcAbas;
         public System.Windows.Forms.TabPage tpLista;
         public System.Windows.Forms.Panel panel1;

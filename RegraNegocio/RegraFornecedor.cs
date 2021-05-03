@@ -38,7 +38,8 @@ namespace RegraNegocio
         public override DataTable CarregarRegistros(string filtros = "")
         {
             StringBuilder str = new StringBuilder();
-            str.AppendLine("SELECT ID_FORNECEDOR, FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, FOR_DTHRCAD FROM FORNECEDOR");
+            str.AppendLine("SELECT ID_FORNECEDOR, EMP_NOME, FOR_NOME, FOR_CPFCNPJ, FOR_TELEFONE, FOR_DTHRCAD FROM FORNECEDOR");
+            str.AppendLine("INNER JOIN EMPRESA ON ID_EMPRESA = IDF_EMPRESA");
             if (filtros.Trim() != "")
             {
                 str.AppendLine("WHERE " + filtros);
